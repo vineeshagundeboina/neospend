@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<style>
+h1 {
+	color: brown;
+}
+
+.quotation {
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+.topdiv {
+	width: 1300vh;
+	height: 1300vh;
+	background-color: yellow;
+}
+
+.topdiv #logo {
+	display: flex;
+	text-align: left;
+	float: left;
+	background-color: blue;
+	height: 50%;
+}
+
+.topdiv #distributorName {
+	display: flex;
+	text-align: right;
+	font-size: 20px;
+	float: right;
+	background-color: black;
+	height: 50%;
+}
+
+#distributorName h4 {
+	text-align: right;
+}
+
+.headerTitle {
+	text-align: center;
+	margin-top: 135px;
+	background-color: white;
+}
+
+#leftheaderTable {
+	border: 1px solid #999999;
+	width: 50%;
+	cellpadding: 0;
+	cellspacing: 0;
+}
+
+.leftheader #lefttable {
+	float: left;
+}
+
+.leftheader #righttable {
+	float: right;
+}
+
+.saleTitle {
+	text-align: center;
+	background-color: white;
+	margin-top: 245px;
+}
+
+.saleReturnTitle {
+	text-align: center;
+	background-color: white;
+	margin-top: 55px;
+}
+
+table {
+	border-collapse: collapse;
+}
+</style>
+</head>
+
+<body>
+	<div style='background-color: purple; width: 100%; height: 100%;'>
+		<div style="float: left; background-color: red;">
+
+			
+		 <img src="${image}" alt="neologo" th:src="${image}" />
+		</div>
+		
+		<div style="float: right; background-color: white;">
+
+			Name:<th4 th:text="${orders[0].user.userName}"></th4>
+			<br />
+			Phone:<th4 th:text="${orders[0].user.mobileNumber}"></th4>
+			<br />
+			Location:<th4 th:text="${orders[0].store.storeLocation}"></th4>
+			<br />
+
+		</div>
+	</div>
+	<h4 class="headerTitle">GSTR 1 Report</h4>
+	<div class="leftheader">
+		<table id="righttable">
+			<thead>
+				<tr>
+					<th width="10%" height="30" align="center"><strong>FromYear</strong></th>
+					<th width="10%" align="center"><strong>FromMonth</strong></th>
+					<th width="10%" align="center"><strong>ToYear</strong></th>
+					<th width="10%" align="center"><strong>ToMonth</strong></th>
+				</tr>
+				<tr>
+					<th width="10%" height="30" align="center"
+						th:text="${#dates.format(fromDate, 'yyyy')}"></th>
+					<th width="10%" align="center"
+						th:text="${#dates.format(fromDate, 'MM')}"></th>
+					<th width="10%" align="center"
+						th:text="${#dates.format(toDate, 'yyyy')}"></th>
+					<th width="10%" align="center"
+						th:text="${#dates.format(toDate, 'MM')}"></th>
+				</tr>
+			</thead>
+		</table>
+
+
+		<table id="lefttable">
+			<tr>
+				<th width="10%" height="30" align="center"><strong>GSTN:</strong></th>
+				<th width="10%" height="30" align="center"
+					th:text="${orders[0].store.gstNumber}"></th>
+			</tr>
+			<tr>
+				<th width="10%" align="center"><strong>Legal name of
+						the registered person: </strong></th>
+				<th width="10%" height="30" align="center"
+					th:text="${orders[0].user.userName}"></th>
+			</tr>
+			<tr>
+				<th width="10%" align="center"><strong>Trade name, if
+						any</strong></th>
+				<th width="10%" height="30" align="center"
+					th:text="${orders[0].user.userName}"></th>
+			</tr>
+			<tr>
+				<th width="10%" align="center"><strong>Aggregate
+						Turnover in the preceeding Financial Year: </strong></th>
+				<th width="10%" height="30" align="center"
+					th:text="${orders[0].user.userName}"></th>
+			</tr>
+			<tr>
+				<th width="10%" align="center"><strong>Aggregate
+						Turnover - April to June, 2022: </strong></th>
+				<th width="10%" height="30" align="center"
+					th:text="${orders[0].user.userName}"></th>
+			</tr>
+		</table>
+	</div>
+
+	<h4 class="saleTitle">SALE</h4>
+	<table>
+		<thead>
+			<tr
+				style="font-size: 10px; color: #000; font-family: 'Muli', sans-serif;">
+				<th width="10%" height="30" align="center"><strong>Gstn</strong></th>
+				<th width="10%" align="center"><strong>InvoiceDate </strong></th>
+				<th width="10%" align="center"><strong>InvoiceNo</strong></th>
+
+				<th width="10%" align="center"><strong>InvoiceAmount</strong></th>
+				<th width="10%" align="center"><strong>CESS</strong></th>
+				<th width="10%" align="center"><strong>TaxAmount</strong></th>
+				<th width="10%" align="center"><strong>I-GST</strong></th>
+				<th width="10%" align="center"><strong>C-GST</strong></th>
+				<th width="10%" align="center"><strong>S-GST</strong></th>
+				<th width="10%" align="center"><strong>Placeof Supply</strong></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="order: ${orders}" style="font-size: 13px;">
+				<td th:text="${order.store.gstNumber}" />
+				<td th:text="${#dates.format(order.orderdate, 'dd-MM-yyyy')}" />
+				<td th:text="${order.documentno}" />
+				<td th:text="${order.gst}" />
+				<td th:text="NA" />
+				<td th:text="${order.total}" />
+				<td th:text="${order.igst}" />
+				<td th:text="${order.cgst}" />
+				<td th:text="${order.sgst}" />
+				<td th:text="${order.store.storeLocation}" />
+
+			</tr>
+			<tr
+				style="font-size: 13px; color: #000; padding: 5px; font-family: 'Muli', sans-serif;">
+				<td height="30" align="center"><strong>TOTAL</strong></td>
+				<td>&nbsp;</td>
+				<td align="center">&nbsp;</td>
+				<td align="center" th:text="${#aggregates.sum(orders.![gst])}"><strong></strong></td>
+				<td align="center">&nbsp;</td>
+				<td align="center" th:text="${#aggregates.sum(orders.![total])}"><strong></strong></td>
+				<td align="center" th:text="${#aggregates.sum(orders.![igst])}"><strong></strong></td>
+				<td align="center" th:text="${#aggregates.sum(orders.![cgst])}"><strong></strong></td>
+				<td align="center" th:text="${#aggregates.sum(orders.![sgst])}"></strong></td>
+				<td align="center"></td>
+			</tr>
+		</tbody>
+	</table>
+	<h4 class="saleReturnTitle">SALE RETURN</h4>
+	<table>
+		<thead>
+			<tr
+				style="font-size: 10px; color: #000; font-family: 'Muli', sans-serif;">
+				<th width="10%" height="30" align="center"><strong>Gstn</strong></th>
+				<th width="10%" align="center"><strong>InvoiceDate </strong></th>
+				<th width="10%" align="center"><strong>InvoiceNo</strong></th>
+
+				<th width="10%" align="center"><strong>InvoiceAmount</strong></th>
+				<th width="10%" align="center"><strong>CESS</strong></th>
+				<th width="10%" align="center"><strong>TaxAmount</strong></th>
+				<th width="10%" align="center"><strong>I-GST</strong></th>
+				<th width="10%" align="center"><strong>C-GST</strong></th>
+				<th width="10%" align="center"><strong>S-GST</strong></th>
+				<th width="10%" align="center"><strong>Placeof Supply</strong></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="order: ${orders}" style="font-size: 13px;">
+				<td th:text="${order.store.gstNumber}" />
+				<td th:text="${#dates.format(order.orderdate, 'dd-MM-yyyy')}" />
+				<td th:text="${order.documentno}" />
+				<td th:text="${order.gst}" />
+				<td th:text="NA" />
+				<td th:text="${order.total}" />
+				<td th:text="${order.igst}" />
+				<td th:text="${order.cgst}" />
+				<td th:text="${order.sgst}" />
+				<td th:text="${order.store.storeLocation}" />
+
+			</tr>
+			<tr
+				style="font-size: 13px; color: #000; padding: 5px; font-family: 'Muli', sans-serif;">
+				<td height="30" align="center"><strong>TOTAL</strong></td>
+				<td>&nbsp;</td>
+				<td align="center">&nbsp;</td>
+				<td align="center" th:text="${#aggregates.sum(orders.![gst])}"><strong></strong></td>
+				<td align="center">&nbsp;</td>
+				<td align="center" th:text="${#aggregates.sum(orders.![total])}"><strong></strong></td>
+				<td align="center" th:text="${#aggregates.sum(orders.![igst])}"><strong></strong></td>
+				<td align="center" th:text="${#aggregates.sum(orders.![cgst])}"><strong></strong></td>
+				<td align="center" th:text="${#aggregates.sum(orders.![sgst])}"><strong></strong></td>
+				<td align="center"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

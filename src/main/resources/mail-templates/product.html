@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		h1 {
+			color: brown;
+		}
+
+		.quotation {
+			width: 100%;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid black;
+		}
+
+
+
+
+
+
+		table {
+			border-collapse: collapse;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="border-color:1px solid black;">
+		<div style='width: 100%; height: 100%;'>
+			<div class="jumbotron" style="height: 10%;padding:0px;">
+				<h2>Order</h2>
+			</div>
+			<div>
+				<div style="float: left; background-color: red;">
+					<img src="${image}" alt="neologo" th:src="${image}"
+				</div>
+				<div style="float: right; background-color: white;margin-right:750px;font-size:20px">
+
+					Order #:<th4 th:text="${orders[0].user.userName}"></th4>
+					<br />
+					Date:<th4 th:text="${orders[0].user.mobileNumber}"></th4>
+					<br />
+					Due:<th4 th:text="${orders[0].store.storeLocation}"></th4>
+					<br />
+				</div>
+
+			</div>
+
+		</div>
+		<div style="width:100%;height:100px;">
+			<div style="float: left; background-color: white;margin-right:1200px;font-size:20px">
+				<h4>storeName</h4>
+
+				<h4>companyName</h4>
+
+				<h4>storeAddress1</h4>
+
+				<h4>storeAddress2</h4>
+
+				<h4>stateName</h4>
+				<h4>pincode</h4>
+				<h4>storePhone</h4>
+
+				<h4>storeMail</h4>
+				<h4>gstNumber</h4>
+			</div>
+
+
+			<div style="float: right; background-color: white;margin-right:700px;font-size:20px;margin-top:-280px;">
+				<h4>storeName</h4>
+
+				<h4>companyName</h4>
+
+				<h4>storeAddress1</h4>
+
+				<h4>storeAddress2</h4>
+
+				<h4>stateName</h4>
+				<h4>pincode</h4>
+				<h4>storePhone</h4>
+
+				<h4>storeMail</h4>
+				<h4>gstNumber</h4>
+			</div>
+		</div>
+	</div style="width:100%;height:100px;background-color: red;">
+	<div class="jumbotron" style="height: 50%;width:100%;padding:0px;margin-top:300px">
+		<h3>Payment Method</h3>
+	</div>
+	<h4>UPI</h4>
+	<div style="height: 10%;width:100%;padding:0px;margin-top:10px">
+		<table style="border:none;border-collapse: collapse;rules:none;">
+			<thead class="jumbotron" style="height: 10%;width:100%;padding:0px;margin-top:10px">
+				<tr style="font-size: 20px; color: #000; font-family: 'Muli', sans-serif;border:none;">
+					<th width="10%" height="30" align="center" style="border:none;"><strong>Item</strong></th>
+					<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+					<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+					<th width="10%" align="center" style="border:none;"><strong>Price </strong></th>
+					<th width="10%" align="center" style="border:none;"><strong>GST </strong></th>
+
+					<th width="10%" align="center" style="border:none;"> <strong>Qty</strong></th>
+					<th width="10%" align="center" style="border:none;"><strong>Amount</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="font-size: 20px; color: #000; font-family: 'Muli', sans-serif;border:none;">
+					<td width="10%" align="left" style="border:none;margin-left: -110px;">COKE</td>
+					<td width="10%" align="left" style="border:none;"><strong>&nbsp; </strong></td>
+					<td width="10%" align="left" style="border:none;"><strong>&nbsp; </strong></td>
+
+					<td width="10%" height="30" align="left" style="border:none;">321</td width="10%" height="30"
+						align="center" style="border:none;">
+					<td width="10%" height="30" align="left" style="border:none;">76.43</td width="10%" height="30"
+						align="center" style="border:none;">
+					<td width="10%" height="30" align="left" style="border:none;">5</td width="10%" height="30"
+						align="center" style="border:none;">
+					<td width="10%" height="30" align="left" style="border:none;">1605</td width="10%" height="30"
+						align="center" style="border:none;">
+				</tr>
+				<!--<tr th:each="purchaseOrder: ${purchaseOrders}"
+				style="font-size: 13px;">
+				<td th:text="${purchaseOrder.store.gstNumber}" />
+				<td
+					th:text="${#dates.format(purchaseOrder.orderDate, 'dd-MM-yyyy')}" />
+				<td th:text="${purchaseOrder.documentnumber}" />
+				<td th:text="${purchaseOrder.gst}" />
+				<td th:text="NA" />
+				<td th:text="${purchaseOrder.grosstotal}" />
+				<td th:text="${purchaseOrder.igst}" />
+				<td th:text="${purchaseOrder.cgst}" />
+				<td th:text="${purchaseOrder.sgst}" />
+				<td th:text="${purchaseOrder.store.storeLocation}" />
+
+			</tr>-->
+			</tbody>
+			<tr style="font-size: 20px;">
+				<th width="10%" height="30" align="center" style="border:none;"><strong>&nbsp;&nbsp;</strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+
+				<th width="10%" align="center" style="border:none;"> <strong>Sub Total:</strong></th>
+			</tr>
+			<tr style="font-size: 20px;">
+				<th width="10%" height="30" align="center" style="border:none;"><strong>&nbsp;&nbsp;</strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+
+				<th width="10%" align="center" style="border:none;"> <strong>Tax Total:</strong></th>
+			</tr>
+			<tr style="font-size: 20px;">
+				<th width="10%" height="30" align="center" style="border:none;"><strong>&nbsp;&nbsp;</strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+				<th width="10%" align="center" style="border:none;"><strong>&nbsp;&nbsp; </strong></th>
+
+				<th width="10%" align="center" style="border:none;"><strong>Total:</strong></th>
+			</tr>
+		</table>
+	</div>
+
+	</div>
+</body>
+
+</html>

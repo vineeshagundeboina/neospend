@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+@page {
+    @top-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: sans-serif;
+        padding-right: 15px;
+    }
+}
+
+
+body {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#invoice{
+    padding: 0px;
+}
+
+.invoice {
+    position: relative;
+    padding: 15px
+}
+
+.invoice header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+   
+}
+
+.invoice .company-details {
+    text-align: right
+}
+
+.invoice .company-details .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.invoice .contacts {
+    margin-bottom: 20px
+}
+
+.invoice .invoice-to {
+    text-align: left
+}
+
+.invoice .invoice-to .to {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.invoice .invoice-details {
+    text-align: right
+}
+
+.invoice .invoice-details .invoice-id {
+    margin-top: -100px;
+    margin-right: 150px
+  
+}
+
+.invoice main {
+    padding-bottom: 50px
+}
+
+.invoice main .thanks {
+    margin-top: 100px;
+    font-size: 2em;
+    margin-bottom: 50px
+}
+
+.invoice main .notices {
+    padding-left: 6px;
+    border-left: 6px solid #3989c6
+}
+
+.invoice main .notices .notice {
+    font-size: 1.2em
+}
+
+
+.invoice footer {
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #aaa;
+    padding: 8px 0
+}
+.invoice {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: sans-serif;
+}
+a.logo {
+    display: inline-block;
+    text-decoration: none;
+}
+tr, tfoot {
+    page-break-inside: avoid;
+}
+.logo {
+    width: 200px;
+  height: 30px;
+  text-align: left;
+   
+}
+
+.dc-no{
+ display: inline-block;
+}
+
+.dc-date{
+ display: inline-block;
+ margin-bottom: 10px;
+ margin-top: 0px;
+}
+
+.headerTitle {
+			text-align: center;
+			
+		}
+
+
+</style>
+</head>
+<body>
+
+<div id="invoice">
+    <div class="invoice">
+        <div>
+            <header>
+                <div class="row">
+                    <div class="logo-container">
+                        <a class="logo" >
+                            <img src="${image}" alt="neologo" th:src="${image}"
+                        </a>
+                    </div>
+                     <h1 class="headerTitle">Delivery Challan</h1>
+                </div>
+                <div style="clear: both;"></div>
+            </header>
+            <main>
+               <div class="row dc-info"> 
+                 <div class="row dc-no">Delivery Challan No:   
+                	<th4 th:text="${purchaseOrders[0].purchaseOrder.documentnumber}"></th4>
+			
+                 </div>
+                 <div></div>
+               		<div class="dc-date">Date : <h3 class="dc-date"> </h3></div>
+               </div>
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <div class="text-gray-light" >Bill TO:</div>
+                        <p class="to"> <th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeName}"></th4></p>
+                        <div class="address">
+                            	<th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeAddress1}"></th4>
+                              
+                            
+                        </div>
+                        <div class="gstn " style="display: inline-block;">GST : <p style="display: inline-block;"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.gstNumber}"></th4></p></div>
+                    </div>
+                </div>
+                
+                 <div class="row contacts">
+                    <div class="col invoice-to">
+                        <div class="text-gray-light">Ship/Delivery To : </div>
+                         <div class="text-gray-light">Ship to</div>
+                        <p class="to"> <th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeName}"></th4></p>
+                        <div class="address">
+                           <th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeAddress1}"></th4>
+                               
+                            
+                        </div>
+                        <div class="gstn " style="display: inline-block;">GST : <p style="display: inline-block;"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.gstNumber}"></th4></p></div>
+                         <div class="state" style="display: inline-block; margin-bottom: -20px; margin-top: -20px;">State : <p style="display: inline-block;"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.state.stateName}"></th4></p></div>
+                          <div class="mobile " style="display: inline-block;">Mobile  : <p style="display: inline-block;"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.storePhone}"></th4></p></div>
+                    </div>
+                    <div class="col invoice-details">
+                        <p class="invoice-id">Pickup from : </p>
+                        <div class="date" style="margin-right: 75px"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeName}"></th4></div>
+                        <div class="date" style="margin-right: 75px"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeAddress1}"></th4></div>
+                    </div>
+                </div>
+               <table style="border: 1px solid #999999;" width="100%" border="1"
+							cellpadding="0" cellspacing="0" class="tb2">
+								<thead>
+								<tr
+									style="font-size: 13px; color: #000; padding: 5px; font-family: 'Muli', sans-serif;">
+									<th width="10%" align="center"><strong>Particulars
+									</strong></th>
+									<th width="10%" align="center"><strong>HSN Code </strong></th>
+									<th width="10%" align="center"><strong>Quantity NOS</strong></th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="dc: ${purchaseOrders}" style="font-size: 13px;">
+									<td th:text="${dc.product.name}" />
+									<td th:text="${dc.product.hsnCode}" />
+									<td th:text="${dc.shippedQuantity}" />
+									
+					
+								</tr>
+								<tr style="font-size: 13px; color: #000; padding: 5px; font-family: 'Muli', sans-serif;">
+									
+									<td align="center">&nbsp;</td>
+									<td align="center"></td>
+									<td align="center">&nbsp;</td>
+									
+					
+								</tr>
+							</tbody>
+						</table>
+                 <div class="row dc-no"> PAN No :   <p class="row dc-no">- <th4 th:text="${purchaseOrders[0].purchaseOrder.store.pincode}"></th4></p></div>
+                 <div class="company-name" style=" margin-bottom: -20px; margin-top: -20px"><p><th4 th:text="${purchaseOrders[0].purchaseOrder.store.storeAddress2}"></th4></p></div>
+               	 <div class="gstn " style="display: inline-block;">GST : <p style="display: inline-block;"><th4 th:text="${purchaseOrders[0].purchaseOrder.store.gstNumber}"></th4></p></div>
+                
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice"></div>
+                </div>
+            </main>
+            <footer>
+                Invoice was created on a computer and is valid without the signature and seal.
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

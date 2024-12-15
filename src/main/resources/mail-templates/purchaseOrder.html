@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+
+
+h1 {
+	color: brown;
+}
+
+.quotation {
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+table {
+	border-collapse: collapse;
+}
+</style>
+</head>
+
+<body >
+	<div class="container" style="width: 100%">
+		<div style="border-color: 1px solid black;">
+			<div style='width: 100%; height: 100%;'>
+				<div class="jumbotron"
+					style="height: 10%; padding: 0px; ">
+					<p style="border-style: groove; background-color: #D3D3D3; margin-top: 20px;">
+						<strong> Order </strong>
+					</p>
+				</div>
+				<div>
+					<div style="float: left;">
+						<img
+							src="./src/main/resources/img/Neomaxerlogo.png"
+							alt="neologo" th:src="${image}" width="200" />
+					</div>
+					<div style="float: right; text-align: right; font-size: 15px; ">
+
+						Order #:
+						<th4 th:text="${purchaseOrderLines[0].purchaseOrder.documentnumber}" />
+
+						<br /> Date:
+						<th4 th:text="${purchaseOrderLines[0].purchaseOrder.orderDate}" />
+
+						<br /> Due:
+						<th4 th:text="${purchaseOrderLines[0].purchaseOrder.dueDate}"/>
+
+						<br />
+
+					</div>
+					<br />
+
+				</div>
+				<br /> <br />
+
+			</div>
+			<br /> <br /> <br /> <br />
+			<div style="width: 100%; height: 100px;">
+			  
+				<div
+					style="float: left; background-color: white; text-align: left; font-size: 15px; margin-left: 50px">
+					 <div><h3>Bill To : </h3></div>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.storeName}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.company.companyName}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.storeAddress1}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.storeAddress2}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.state.stateName}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.pincode}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.storePhone}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.storeMail}"/>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.store.gstNumber}"/>
+					
+				</div>
+
+
+				<div
+					style="float: right; text-align: right; font-size: 15px; margin-right: 50px">
+					<div>
+						<h3>Ship To :</h3>
+					</div>
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.distributorName}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.company.companyName}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.distributorAddress1}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.distributorAddress2}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.state.stateName}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.pincode}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.distributorPhone}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.distributorMail}" />
+					<p th:text="${purchaseOrderLines[0].purchaseOrder.distributor.gstNumber}" />
+				</div>
+			</div>
+		</div>
+		<div style="width: 100%; height: 100px;">
+			<div class="jumbotron"
+				style="height: 50%; width: 100%; padding: 0px; margin-top: 250px; ">
+				<p style="border-style: groove; background-color: #D3D3D3">
+					<strong>Payment Method</strong>
+				</p>
+				<p>UPI</p>
+			</div>
+			
+			<div style="height: 10%; width: 100%; padding: 0px; margin-top: 10px">
+				<table style="border: none; rules: none;">
+					<thead class="jumbotron"
+						style="height: 10%; width: 100%; padding: 0px; margin-top: 10px; border-style: groove; background-color: #D3D3D3">
+						<tr
+							style="font-size: 20px; color: #000; font-family: 'Muli', sans-serif; border: none;">
+							<th width="10%" height="30" align="center" style="border: none;"><strong>Item</strong></th>
+							<th width="10%" align="center" ><strong>&nbsp;&nbsp;</strong></th>
+							<th width="50%" align="center" ><strong>&nbsp;&nbsp;</strong></th>
+							<th width="10%" align="center" ><strong>Price</strong></th>
+							<th width="10%" align="center" ><strong>GST</strong></th>
+							<th width="10%" align="center" ><strong>Qty</strong></th>
+							<th width="10%" align="center" ><strong>Amount</strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item: ${purchaseOrderLines}" style="font-size: 18px;">
+							<td th:text="${item.product.name}" />
+							<td ><strong>&nbsp; </strong></td>
+							<td ><strong>&nbsp; </strong></td>
+							<td th:text="${item.product.mrp}"  />
+							<td th:text="${item.purchaseOrder.gst}"  />
+							<td th:text="${item.orderedQuantity}"  />
+							<td th:text="${#numbers.formatDecimal(item.linetotal, 0, 'COMMA', 2, 'POINT')}"   />
+						</tr>
+					</tbody>
+					
+					<tr >
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+							
+					</tr>
+					
+					<thead>
+					<tr th:each="item: ${purchaseOrderLines}" style="font-size: 20px;">
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th >Sub.total:</th>
+						<td th:text="${item.purchaseOrder.grosstotal - item.purchaseOrder.gst}"  />
+						
+						
+						
+					</tr>
+					</thead>
+					<thead>
+					<tr  th:each="item: ${purchaseOrderLines}" style="font-size: 20px;">
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th>Tax:</th>
+						<td th:text="${item.purchaseOrder.gst}" />
+						
+					
+					</tr>
+					</thead>
+					<thead>
+					<tr  th:each="item: ${purchaseOrderLines}" style="font-size: 20px;">
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th style="border: none;"><strong>&nbsp;&nbsp;</strong></th>
+						<th >total:</th>
+						<td th:text="${item.purchaseOrder.grosstotal}" />
+						
+					</tr>
+					</thead>
+				</table>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
